@@ -10,7 +10,7 @@ export const sucessfullLogin = user => (
     }
 );
 
-export const loginUserAction = (login, password, props) => {
+export const loginUserAction = (login, password, firstName, lastName, props) => {
     return dispatch => {
         fetch(`${baseUrl}/account/login`, {
             method: 'POST',

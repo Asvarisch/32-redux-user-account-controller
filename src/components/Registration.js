@@ -9,13 +9,13 @@ const Registration = props => {
 
 
     const handleSubmitRegisterForm = () => {
-        const user = {
+        const userData = {
             login: login,
             password: password,
             firstName: firstName,
             lastName: lastName
         }
-        props.registerUser(user, props);
+        props.registerUser(userData, props);
         
     }
 

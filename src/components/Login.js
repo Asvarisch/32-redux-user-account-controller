@@ -3,9 +3,12 @@ import React, { useState } from 'react';
 const Login = props => {
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
+    const firstName = props.firstName;
+    const lastName = props.lastName;
 
     const handleSubmitLoginForm = () => {
-        props.loginUser(login, password, props);
+        console.log(firstName);
+        props.loginUser(login, password, firstName, lastName, props);
     }
 
     return (

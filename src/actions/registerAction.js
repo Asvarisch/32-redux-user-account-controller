@@ -10,14 +10,14 @@ export const sucessfullRegistration = user => (
     }
 );
 
-export const registerUserAction = (user, props) => {
+export const registerUserAction = (userData, props) => {
     return dispatch => {
         fetch(`${baseUrl}/account/user`, {
             method: 'POST',
             headers: {
                 "Content-Type": 'application/json'
             },
-            body: JSON.stringify(user)
+            body: JSON.stringify(userData)
         })
             .then(response => {
                 if (response.ok) {
@@ -27,6 +27,7 @@ export const registerUserAction = (user, props) => {
                 }
             })
             .then(user => {
+                localStorage.setItem('userInfo', JSON.stringify({firstName: userData.firstName, lastName: userData.lastName}));
                 dispatch(sucessfullRegistration(user));
                 props.history.push(`/${loginPage}`);
             })

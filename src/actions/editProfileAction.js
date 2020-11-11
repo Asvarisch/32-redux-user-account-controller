@@ -33,6 +33,7 @@ export const editProfileAction = (firstName, lastName, props) => {
                     }
                 })
                 .then(user => {
+                    localStorage.setItem('userInfo', JSON.stringify({firstName, lastName}));
                     dispatch(sucessfullEditing(user));
                     props.history.push(`/${infoPage}`);
                 })

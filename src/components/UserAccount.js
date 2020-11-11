@@ -1,9 +1,18 @@
-import React from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import { changePasswordPage, editProfilePage, regLogPage } from '../utils/Constants';
 
 const UserAccount = props => {
     const userCredentials = JSON.parse(localStorage.getItem('userCredentials'));
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+
+
+    useEffect(() => {
+        const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+        setFirstName(userInfo.firstName);
+        setLastName(userInfo.lastName);
+      }, [firstName, lastName]);
 
     const handleLogout = () => {
         localStorage.removeItem('userCredentials');
@@ -13,8 +22,8 @@ const UserAccount = props => {
     if (userCredentials) {
         return (
             <div>
-                <p>First name: {props.firstName}</p>
-                <p>Last name: {props.lastName}</p>
+                <p>First name: {firstName}</p>
+                <p>Last name: {lastName}</p>
                 <button onClick={() => props.history.push(`/${editProfilePage}`)}>Edit profile</button>
                 <button onClick={() => props.history.push(`/${changePasswordPage}`)}>Change password</button>
                 <button onClick={handleLogout}>Logout</button>
