@@ -27,7 +27,6 @@ export const registerUserAction = (userData, props) => {
                 }
             })
             .then(user => {
-                localStorage.setItem('userInfo', JSON.stringify({firstName: userData.firstName, lastName: userData.lastName}));
                 dispatch(sucessfullRegistration(user));
                 props.history.push(`/${loginPage}`);
             })
