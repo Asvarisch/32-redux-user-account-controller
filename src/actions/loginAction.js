@@ -10,7 +10,7 @@ export const sucessfullLogin = user => (
     }
 );
 
-export const loginUserAction = (login, password, firstName, lastName, props) => {
+export const loginUserAction = (login, password, props) => {
     return dispatch => {
         fetch(`${baseUrl}/account/login`, {
             method: 'POST',
@@ -27,6 +27,7 @@ export const loginUserAction = (login, password, firstName, lastName, props) => 
             })
             .then(user => {
                 localStorage.setItem('userCredentials', JSON.stringify({login, password}));
+                localStorage.setItem('userInfo', JSON.stringify({firstName: user.firstName, lastName: user.lastName}));
                 dispatch(sucessfullLogin(user));
                 props.history.push(`/${infoPage}`);
                 

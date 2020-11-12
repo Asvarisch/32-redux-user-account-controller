@@ -4,18 +4,23 @@ import { changePasswordPage, editProfilePage, regLogPage } from '../utils/Consta
 
 const UserAccount = props => {
     const userCredentials = JSON.parse(localStorage.getItem('userCredentials'));
+    // const userInfo = JSON.parse(localStorage.getItem('userInfo'));
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
 
 
     useEffect(() => {
         const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-        setFirstName(userInfo.firstName);
-        setLastName(userInfo.lastName);
-      }, [firstName, lastName]);
+        if (userInfo) {
+            setFirstName(userInfo.firstName);
+            setLastName(userInfo.lastName);
+        }
+
+    }, [firstName, lastName]);
 
     const handleLogout = () => {
         localStorage.removeItem('userCredentials');
+        localStorage.removeItem('userInfo');
         props.history.push(`/${regLogPage}`);
     }
 
